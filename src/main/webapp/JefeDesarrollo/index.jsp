@@ -27,14 +27,14 @@
             </div>
         </fieldset>
     </form>
-    <sql:query var="q" dataSource="jdbc/mysql">
+    <%-- <sql:query var="q" dataSource="jdbc/mysql">
         SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
         FROM casos
         JOIN departamentos ON casos.Departamento = departamentos.id
-    </sql:query>
-    <%-- <sql:query var="q" dataSource="jdbc/mysql">
+    </sql:query>--%>
+    <sql:query var="q" dataSource="jdbc/mysql">
          SELECT * FROM casos
-     </sql:query>--%>
+     </sql:query>
 
 
     <br>
@@ -47,7 +47,8 @@
             <th>Descripcion</th>
             <th>Nombre de Proyecto</th>
             <th>Departamento</th>
-            <th>Departamento ID</th>
+            <th>Operación</th>
+
 
         </tr>
         </thead>
@@ -57,7 +58,6 @@
                 <td>${casos.Codigo}</td>
                 <td>${casos.Tipo}</td>
                 <td>${casos.Descripcion}</td>
-                <td>${casos}</td>
                 <td>${casos.Nombre}</td>
                 <td>${casos.Departamento}</td>
                 <td>

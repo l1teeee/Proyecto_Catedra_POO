@@ -5,8 +5,14 @@
   Time: 11:56 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +24,11 @@
 <body>
 <div class="container">
     <h1 class="text-center">${param.cabecera}</h1>
-    <form>
+    <sql:query var="q" dataSource="jdbc/mysql">
+        SELECT nombre FROM departamentos WHERE id = ?
+        <sql:param value="${param.departamento}" />
+    </sql:query>
+<form>
         <fieldset disabled>
             <div class="mb-3">
                 <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
@@ -36,10 +46,12 @@
                 <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
                 <input type="text" id="disabledTextInput3" class="form-control" placeholder="" value="${param.nombre}">
             </div>
-            <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
-                <input type="text" id="disabledTextInput4" class="form-control" placeholder="" value="${param.departamento}">
-            </div>
+            <c:forEach var="row" items="${q.rows}">
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
+                    <input type="text" id="disabledTextInput4" class="form-control" placeholder="" value="${row.nombre}">
+                </div>
+            </c:forEach>
 
         </fieldset>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
