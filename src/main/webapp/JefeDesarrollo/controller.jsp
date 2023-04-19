@@ -55,20 +55,27 @@
         <%--Titulos--%>
         <c:param name="cabecera" value="Caso a desarrollar"/>
         <c:param name="titu_caso" value="Codigo del Caso"/>
-        <c:param name="titu_caso" value="Codigo del Caso"/>
-        
+        <c:param name="titu_tipo" value="Tipo de Sistema"/>
+        <c:param name="titu_descrip" value="Descripción de sistema"/>
+        <c:param name="titu_nombre" value="Titulo de Sistema"/>
+        <c:param name="titu_departamento" value="Departamento"/>
+
+
         <%--Valores de Index--%>
         <c:param name="caso" value="${param.id}"/>
         <c:param name="tipo" value="${param.tipo}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
         <c:param name="nombre" value="${param.nombre}"/>
         <c:param name="departamento" value="${param.departamento}"/>
-
-
-
-
     </c:redirect>
 </c:if>
+
+<c:if test="${param.operacion == 'regresar'}">
+    <c:redirect url="index.jsp">
+    </c:redirect>
+</c:if>
+
+
 
 <%--
 <%
