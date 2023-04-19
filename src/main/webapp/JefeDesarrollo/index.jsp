@@ -27,14 +27,14 @@
             </div>
         </fieldset>
     </form>
-    <%--<sql:query var="q" dataSource="jdbc/mysql">
+    <sql:query var="q" dataSource="jdbc/mysql">
         SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
         FROM casos
         JOIN departamentos ON casos.Departamento = departamentos.id
-    </sql:query>--%>
-    <sql:query var="q" dataSource="jdbc/mysql">
-        SELECT * FROM casos
     </sql:query>
+    <%-- <sql:query var="q" dataSource="jdbc/mysql">
+         SELECT * FROM casos
+     </sql:query>--%>
 
 
     <br>
@@ -47,7 +47,7 @@
             <th>Descripcion</th>
             <th>Nombre de Proyecto</th>
             <th>Departamento</th>
-            <th>Asignar</th>
+            <th>Departamento ID</th>
 
         </tr>
         </thead>
@@ -58,6 +58,7 @@
                 <td>${casos.Tipo}</td>
                 <td>${casos.Descripcion}</td>
                 <td>${casos.Nombre}</td>
+                <td>${casos.DepartamentoNombre}</td>
                 <td>${casos.Departamento}</td>
                 <td>
                     <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}">Verificar</a>
