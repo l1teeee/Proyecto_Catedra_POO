@@ -55,10 +55,16 @@
         <c:param name="cabecera" value="Caso a desarrollar"/>
         <c:param name="titu_caso" value="Codigo del Caso"/>
         <c:param name="caso" value="${param.id}"/>
+
         <c:param name="tipo" value="${param.tipo}"/>
+        <c:param name="titu_caso" value="Codigo del Caso"/>
+
         <c:param name="descripcion" value="${param.descripcion}"/>
+
         <c:param name="nombre" value="${param.nombre}"/>
+
         <c:param name="departamento" value="${param.departamento}"/>
+
     </c:redirect>
 </c:if>
 
