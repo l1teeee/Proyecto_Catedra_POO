@@ -33,6 +33,11 @@ body {
     padding: 2vw;
 }
 
+#logo{
+    height: 28px;
+    margin-left: 1vw;
+}
+
 .container #ingreso{
     padding: 1vw;
 }
