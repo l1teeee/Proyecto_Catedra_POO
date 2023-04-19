@@ -58,7 +58,6 @@
                 <td>${casos.Tipo}</td>
                 <td>${casos.Descripcion}</td>
                 <td>${casos.Nombre}</td>
-                <td>${casos.DepartamentoNombre}</td>
                 <td>${casos.Departamento}</td>
                 <td>
                     <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}">Verificar</a>
