@@ -61,7 +61,7 @@
         <c:param name="titu_departamento" value="Departamento"/>
 
 
-        <%--Valores de Index--%>
+        <%--Valores--%>
         <c:param name="caso" value="${param.id}"/>
         <c:param name="tipo" value="${param.tipo}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
@@ -72,6 +72,24 @@
 
 <c:if test="${param.operacion == 'regresar'}">
     <c:redirect url="index.jsp">
+    </c:redirect>
+</c:if>
+
+
+
+
+
+
+<c:if test="${param.operacion == 'rechazo'}">
+    <c:redirect url="formularioRechazo.jsp">
+        <c:param name="cabecera" value="Rechazo de Caso"/>
+        <c:param name="titu_caso" value="Codigo del Caso"/>
+        <c:param name="titu_departamento" value="Departamento"/>
+        <c:param name="titu_recha" value="Escribir argumento de rechazo"/>
+        <c:param name="titu_descrip" value="Descripción del caso"/>
+        <%--Valores--%>
+        <c:param name="casoCod" value="${param.cod}"/>
+        <c:param name="descripcion" value="${param.descripcion}"/>
     </c:redirect>
 </c:if>
 

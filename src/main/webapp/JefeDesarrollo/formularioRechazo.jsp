@@ -31,36 +31,25 @@
     </div>
 </nav>
 <body style="background: #FFFBF5">
-<sql:query var="q" dataSource="jdbc/mysql">
-    SELECT nombre FROM departamentos WHERE id = ?
-    <sql:param value="${param.departamento}" />
-</sql:query>
 <div class="container">
 
     <form class="row g-3" id="ingreso">
         <h1 class="text-center">${param.cabecera}</h1>
 
-        <div class="col-md-6">
+        <div class="mb-3">
             <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
-            <input type="text" id="disabledTextInput" class="form-control" placeholder="" value="${param.caso}" disabled>
-        </div>
-        <div class="col-md-6">
-            <label for="disabledTextInput" class="form-label">${param.titu_nombre}</label>
-            <input type="text" id="disabledTextInput3" class="form-control" placeholder="" value="${param.nombre}" disabled>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="" value="${param.casoCod}" disabled>
         </div>
         <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_descrip}</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="${param.descripcion}" disabled></textarea>
         </div>
-        <c:forEach var="row" items="${q.rows}">
-            <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">${param.titu_departamento}</label>
-                <input type="text" id="disabledTextInput4" class="form-control" placeholder="" value="${row.nombre}" disabled>
-            </div>
-        </c:forEach>
+        <div class="col-12">
+            <label for="exampleFormControlTextarea1" class="form-label">${param.titu_recha}</label>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Digite su razón" ></textarea>
+        </div>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a class="btn bg-success" href="controller.jsp?operacion=verificacion">Aceptar Caso</a>
-            <a class="btn bg-danger" href="controller.jsp?operacion=rechazo&amp;cod=${param.caso}&amp;descripcion=${param.descripcion}">Rechazar caso</a>
+            <a class="btn bg-danger" href="controller.jsp?operacion=verificacion">Rechazar el caso</a>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar">Regresar</a>
         </div>
     </form>
