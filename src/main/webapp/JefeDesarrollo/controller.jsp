@@ -23,7 +23,7 @@
         <sql:param value="${param.id}"/>
     </sql:update>
 
-    <c:redirect url="principal.jsp">
+    <c:redirect url="">
         <c:param name="mensaje" value="Persona eliminada con exito"/>
     </c:redirect>
 </c:if>
