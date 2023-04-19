@@ -66,6 +66,15 @@
         </c:forEach>
         </tbody>
     </table>
+    <center>
+        <br>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">Revisar Casos</button>
+            <button type="button" class="btn btn-primary">Casos Rechazados</button>
+            <button type="button" class="btn btn-primary">Regresar a Menu</button>
+        </div>
+    </center>
+
     <c:if test="${not empty param.mensaje}">
         <div class="alert alert-success">
             <strong>Correcto! </strong><c:out value="${param.mensaje}"/>
@@ -73,5 +82,6 @@
         </div>
     </c:if>
 </div>
+
 </body>
 </html>
