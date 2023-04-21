@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" disabled>
+            <input class="form-control me-2" type="search" placeholder="" value="${param.IDusu}" aria-label="Search" disabled>
         </form>
     </div>
 </nav>
@@ -35,8 +35,12 @@
         JOIN departamentos ON casos.Departamento = departamentos.id
     </sql:query>--%>
     <sql:query var="q" dataSource="jdbc/mysql">
-        SELECT * FROM casos
+        SELECT Codigo, Tipo, Descripcion, Nombre, Departamento
+        FROM casos
         WHERE Estado = 'En espera de respuesta'
+        AND Departamento = (SELECT dj.id_Departamento
+        FROM departamento_jefe dj
+        WHERE dj.id_Usuario = ${param.IDusu})
     </sql:query>
 
     <table class="table table-striped table-bordered table-hover">
@@ -59,7 +63,7 @@
                 <td>${casos.Nombre}</td>
                 <td>${casos.Departamento}</td>
                 <td>
-                    <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}">Verificar</a>
+                    <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}&amp;idUSU=${param.IDusu}">Verificar</a>
                 </td>
             </tr>
         </c:forEach>

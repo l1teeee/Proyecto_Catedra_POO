@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" disabled>
+            <input class="form-control me-2" type="search" placeholder="" value="${param.usuID}" aria-label="Search" disabled>
         </form>
     </div>
 </nav>

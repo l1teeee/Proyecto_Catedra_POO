@@ -53,6 +53,9 @@
 
 
 
+<%--JEFE DESARROLLADOR--%>
+
+
 <c:if test="${param.operacion == 'verificacion'}">
     <c:redirect url="formulario.jsp">
         <%--Titulos--%>
@@ -70,12 +73,16 @@
         <c:param name="descripcion" value="${param.descripcion}"/>
         <c:param name="nombre" value="${param.nombre}"/>
         <c:param name="departamento" value="${param.departamento}"/>
+        <c:param name="IDusu" value="${param.idUSU}"/>
+
     </c:redirect>
 </c:if>
 
 
 <c:if test="${param.operacion == 'regresar'}">
     <c:redirect url="index.jsp">
+        <c:param name="IDusu" value="${param.usuID}"/>
+
     </c:redirect>
 </c:if>
 
@@ -84,11 +91,6 @@
     <c:redirect url="inicio.jsp">
     </c:redirect>
 </c:if>
-
-
-
-
-
 
 
 <c:if test="${param.operacion == 'rechazo'}">
@@ -101,9 +103,11 @@
         <%--Valores--%>
         <c:param name="casoCod" value="${param.cod}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
+        <c:param name="usuID" value="${param.idUSU}"/>
     </c:redirect>
 </c:if>
 
+<%--JEFE DESARROLLADOR--%>
 
 
 <%--

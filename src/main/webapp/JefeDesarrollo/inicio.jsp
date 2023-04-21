@@ -23,7 +23,7 @@
   <div class="container-fluid">
     <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" disabled>
+      <input class="form-control me-2" type="search" placeholder="5" aria-label="Search" disabled>
     </form>
   </div>
 </nav>
@@ -42,7 +42,7 @@
     <div class="card-body">
       <h5 class="card-title">Seleccione una categoria</h5>
       <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-primary" href="controller.jsp?operacion=regresar">Bandeja de Entrada</a>
+        <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=5">Bandeja de Entrada</a>
         <button type="button" class="btn btn-danger">Desarrolladores Asignados</button>
         <button type="button" class="btn btn-secondary">Cerrar Sesión</button>
       </div>

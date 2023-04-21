@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" disabled>
+            <input class="form-control me-2" type="search" placeholder="" value="${param.IDusu}" aria-label="Search" disabled>
         </form>
     </div>
 </nav>
@@ -60,7 +60,7 @@
         </c:forEach>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <a class="btn bg-success" href="controller.jsp?operacion=verificacion">Aceptar Caso</a>
-            <a class="btn bg-danger" href="controller.jsp?operacion=rechazo&amp;cod=${param.caso}&amp;descripcion=${param.descripcion}">Rechazar caso</a>
+            <a class="btn bg-danger" href="controller.jsp?operacion=rechazo&amp;cod=${param.caso}&amp;descripcion=${param.descripcion}&amp;idUSU=${param.IDusu}">Rechazar caso</a>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar">Regresar</a>
         </div>
     </form>
