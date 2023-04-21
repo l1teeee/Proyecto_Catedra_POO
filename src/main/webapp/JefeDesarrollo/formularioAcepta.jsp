@@ -29,6 +29,30 @@
         </form>
     </div>
 </nav>
+<sql:query var="desa" dataSource="jdbc/mysql">
+    SELECT Id, Nombre, Apellido, Telefono
+    FROM usuarios
+    WHERE Id IN (
+    SELECT id_desarrollador
+    FROM jefedesarrollo_desarrollador
+    WHERE id_jefe = '${param.usuID}'
+    ) AND NOT EXISTS (
+    SELECT *
+    FROM caso_desarrollo
+    WHERE caso_desarrollo.id_Desarrollador = usuarios.Id
+    );
+
+</sql:query>
+<sql:query var="emple" dataSource="jdbc/mysql">
+
+    SELECT dj.id_Departamento, dj.id_Usuario, jdp.id_jefe, jdp.id_probador, u.Id, u.Nombre, u.Apellido, u.Telefono, u.Correo
+    FROM departamento_jefe dj
+    JOIN jefedepto_probador jdp ON dj.id_Usuario = jdp.id_jefe
+    JOIN usuarios u ON jdp.id_probador = u.Id
+    WHERE dj.id_Departamento = (SELECT id_Departamento FROM departamento_jefe WHERE id_Usuario = '${param.usuID}')
+    AND dj.id_Usuario != '${param.usuID}'
+    AND NOT EXISTS (SELECT * FROM caso_desarrollo WHERE id_Probador = jdp.id_probador);
+</sql:query>
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
 
@@ -51,20 +75,29 @@
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_desa}</label>
             <select class="form-select" aria-label="Default select example">
                 <option selected>${param.select_desa}</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <c:forEach var="desarrollador" items="${desa.rows}">
+                    <option>${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
+                </c:forEach>
+
             </select>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_emple}</label>
             <select class="form-select" aria-label="Default select example">
                 <option selected>${param.select_emple}</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <c:forEach var="empleado" items="${emple.rows}">
+                    <option>${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
+                </c:forEach>
             </select>
         </div>
+        <div class="col-12">
+            <label for="exampleFormControlTextarea1" class="form-label">${param.titu_date}</label>
+            <input type="date" id="start" name="trip-start"
+               value="2023-04-21"
+               min="2023-04-21" max="2023-05-31">
+        </div>
+
+
 
 
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">

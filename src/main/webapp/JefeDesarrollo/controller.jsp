@@ -125,6 +125,7 @@
         <c:param name="select_desa" value="Desarrolladores Available"/>
         <c:param name="titu_emple" value="Lista de Empleados del Departamento"/>
         <c:param name="select_emple" value="Empleados Available"/>
+        <c:param name="titu_date" value="Fecha de Entrega"/>
         <%--Valores--%>
         <c:param name="casoCod" value="${param.cod}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
