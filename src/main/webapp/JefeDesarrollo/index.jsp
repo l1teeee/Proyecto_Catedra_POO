@@ -15,7 +15,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/estilo.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    <title>Principal</title>
 </head>
 
@@ -28,7 +27,7 @@
     </div>
 </nav>
 <body style="background: #FFFBF5">
-<div class="container">
+<div class="container" id="tabla">
     <h1 class="text-center">Casos pendientes</h1>
     <%-- <sql:query var="q" dataSource="jdbc/mysql">
         SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
@@ -69,9 +68,9 @@
     <center>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary">Revisar Casos</button>
-            <button type="button" class="btn btn-primary">Casos Rechazados</button>
-            <button type="button" class="btn btn-primary">Regresar a Menu</button>
+            <button type="button" class="btn btn-success">Revisar Casos</button>
+            <button type="button" class="btn btn-danger">Casos Rechazados</button>
+            <a type="button" class="btn btn-secondary" href="controller.jsp?operacion=home">Regresar a Menu</a>
         </div>
     </center>
 
@@ -84,4 +83,18 @@
 </div>
 
 </body>
+<!-- End -->
+
+
+<!-- Footer -->
+<footer class="bg-white">
+    <!-- Copyrights -->
+    <div class="bg-light py-4">
+        <div class="container text-center">
+            <p class="text-muted mb-0 py-2">TELECOM 2023</p>
+        </div>
+    </div>
+</footer>
+<!-- End -->
+
 </html>

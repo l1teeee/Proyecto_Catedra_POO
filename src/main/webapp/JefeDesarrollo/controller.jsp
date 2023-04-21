@@ -50,6 +50,9 @@
     </c:redirect>
 </c:if>
 
+
+
+
 <c:if test="${param.operacion == 'verificacion'}">
     <c:redirect url="formulario.jsp">
         <%--Titulos--%>
@@ -70,10 +73,18 @@
     </c:redirect>
 </c:if>
 
+
 <c:if test="${param.operacion == 'regresar'}">
     <c:redirect url="index.jsp">
     </c:redirect>
 </c:if>
+
+
+<c:if test="${param.operacion == 'home'}">
+    <c:redirect url="inicio.jsp">
+    </c:redirect>
+</c:if>
+
 
 
 

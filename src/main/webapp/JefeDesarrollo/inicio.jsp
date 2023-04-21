@@ -29,7 +29,7 @@
 </nav>
 <body style="background: #FFFBF5">
 <div class="container">
-  <h1 class="text-center">Casos pendientes</h1>
+  <h1 class="text-center">Bienvenido Jefe Desarrollo</h1>
   <%-- <sql:query var="q" dataSource="jdbc/mysql">
       SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
       FROM casos
@@ -37,12 +37,15 @@
   </sql:query>--%>
   <div class="card text-center">
     <div class="card-header">
-      Featured
+      TELECOM
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">Seleccione una categoria</h5>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-primary" href="controller.jsp?operacion=regresar">Bandeja de Entrada</a>
+        <button type="button" class="btn btn-danger">Desarrolladores Asignados</button>
+        <button type="button" class="btn btn-secondary">Cerrar Sesión</button>
+      </div>
     </div>
     <div class="card-footer text-body-secondary">
       2 days ago
