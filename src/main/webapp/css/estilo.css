@@ -22,3 +22,10 @@
 .container #ingreso{
     padding: 1vw;
 }
+
+
+#foot {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

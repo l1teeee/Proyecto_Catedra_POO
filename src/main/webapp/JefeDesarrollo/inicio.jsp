@@ -61,4 +61,13 @@
 </div>
 
 </body>
+
+<footer class="bg-white" id="foot">
+  <!-- Copyrights -->
+  <div class="bg-light py-4">
+    <div class="container text-center">
+      <p class="text-muted mb-0 py-2">TELECOM 2023</p>
+    </div>
+  </div>
+</footer>
 </html>
