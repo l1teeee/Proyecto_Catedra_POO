@@ -113,6 +113,26 @@
     </c:redirect>
 </c:if>
 
+
+<c:if test="${param.operacion == 'acepta'}">
+    <c:redirect url="formularioAcepta.jsp">
+        <c:param name="cabecera" value="Aceptación de Caso"/>
+        <c:param name="titu_caso" value="Codigo del Caso"/>
+        <c:param name="titu_departamento" value="Departamento"/>
+        <c:param name="titu_recha" value="Información adicional para el desarrollador"/>
+        <c:param name="titu_descrip" value="Descripción del caso"/>
+        <c:param name="titu_desa" value="Lista de Desarrolladores del Departamento"/>
+        <c:param name="select_desa" value="Desarrolladores Available"/>
+        <c:param name="titu_emple" value="Lista de Empleados del Departamento"/>
+        <c:param name="select_emple" value="Empleados Available"/>
+        <%--Valores--%>
+        <c:param name="casoCod" value="${param.cod}"/>
+        <c:param name="descripcion" value="${param.descripcion}"/>
+        <c:param name="usuID" value="${param.idUSU}"/>
+        <c:param name="departi" value="${param.departament}"/>
+    </c:redirect>
+</c:if>
+
 <%--JEFE DESARROLLADOR--%>
 
 

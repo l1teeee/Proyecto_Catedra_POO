@@ -59,7 +59,7 @@
             </div>
         </c:forEach>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a class="btn bg-success" href="controller.jsp?operacion=verificacion">Aceptar Caso</a>
+            <a class="btn bg-success" href="controller.jsp?operacion=acepta&amp;cod=${param.caso}&amp;descripcion=${param.descripcion}&amp;idUSU=${param.IDusu}&amp;departament=${param.departamento}">Aceptar caso</a>
             <a class="btn bg-danger" href="controller.jsp?operacion=rechazo&amp;cod=${param.caso}&amp;descripcion=${param.descripcion}&amp;idUSU=${param.IDusu}">Rechazar caso</a>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.IDusu}">Regresar</a>
         </div>
