@@ -27,7 +27,7 @@
     </div>
 </nav>
 <body style="background: #FFFBF5">
-<div class="container" id="tabla">
+<div class="container">
     <h1 class="text-center">Casos pendientes</h1>
     <%-- <sql:query var="q" dataSource="jdbc/mysql">
         SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
