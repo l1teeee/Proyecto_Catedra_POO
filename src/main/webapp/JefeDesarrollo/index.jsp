@@ -87,7 +87,7 @@
 
 
 <!-- Footer -->
-<footer class="bg-white" id="foot">
+<footer class="bg-dark-subtle" id="foot">
     <!-- Copyrights -->
     <div class="bg-light py-4">
         <div class="container text-center">

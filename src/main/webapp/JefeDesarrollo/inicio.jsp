@@ -47,9 +47,6 @@
         <button type="button" class="btn btn-secondary">Cerrar Sesión</button>
       </div>
     </div>
-    <div class="card-footer text-body-secondary">
-      2 days ago
-    </div>
   </div>
 
   <c:if test="${not empty param.mensaje}">
