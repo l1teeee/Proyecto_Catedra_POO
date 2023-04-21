@@ -17,7 +17,8 @@
     <title>Controlador</title>
 </head>
 <body>
-<c:if test="${param.operacion == 'eliminar'}">
+
+<%--<c:if test="${param.operacion == 'eliminar'}">
     <sql:update var="insertar" dataSource="jdbc/mysql">
         DELETE FROM persona WHERE id_persona = ?
         <sql:param value="${param.id}"/>
@@ -48,7 +49,7 @@
     <c:redirect url="index.jsp">
         <c:param name="mensaje" value="Persona ingresada con exito"/>
     </c:redirect>
-</c:if>
+</c:if>--%>
 
 
 
@@ -82,7 +83,12 @@
 <c:if test="${param.operacion == 'regresar'}">
     <c:redirect url="index.jsp">
         <c:param name="IDusu" value="${param.usuID}"/>
+    </c:redirect>
+</c:if>
 
+<c:if test="${param.operacion == 'inicio'}">
+    <c:redirect url="index.jsp">
+        <c:param name="IDusu" value="${param.usuID}"/>
     </c:redirect>
 </c:if>
 

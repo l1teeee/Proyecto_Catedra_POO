@@ -50,7 +50,7 @@
         </div>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <a class="btn bg-danger" href="controller.jsp?operacion=verificacion">Rechazar el caso</a>
-            <a class="btn btn-primary" href="controller.jsp?operacion=regresar">Regresar</a>
+            <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>
         </div>
     </form>
 </div>
