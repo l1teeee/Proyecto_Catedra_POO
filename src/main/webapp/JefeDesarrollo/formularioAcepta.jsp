@@ -69,11 +69,11 @@
         </div>
         <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_recha}</label>
-            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Digite requerimientos adicionales para el desarrollador" ></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Digite requerimientos adicionales para el desarrollador" required></textarea>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_desa}</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" required>
                 <option selected>${param.select_desa}</option>
                 <c:forEach var="desarrollador" items="${desa.rows}">
                     <option>${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
@@ -83,20 +83,23 @@
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_emple}</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" required>
                 <option selected>${param.select_emple}</option>
                 <c:forEach var="empleado" items="${emple.rows}">
                     <option>${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
                 </c:forEach>
             </select>
         </div>
-        <div class="col-12">
-            <label for="exampleFormControlTextarea1" class="form-label">${param.titu_date}</label>
-            <input type="date" id="start" name="trip-start"
-               value="2023-04-21"
-               min="2023-04-21" max="2023-05-31">
-        </div>
 
+        <div class="form-group">
+            <label for="fecha">${param.titu_date}</label>
+            <div class="input-group">
+                <input type="date" class="form-control" id="fecha"
+                       name="fecha"
+                       placeholder="Ingresa la fecha" value="2023-04-21"
+                       min="2023-04-21" max="2023-05-31" required/>
+            </div>
+        </div>
 
 
 
