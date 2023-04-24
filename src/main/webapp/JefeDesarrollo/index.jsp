@@ -79,8 +79,10 @@
     </center>
 
     <c:if test="${not empty param.mensaje}">
+        <br>
+        <br>
         <div class="alert alert-success">
-            <strong>Correcto! </strong><c:out value="${param.mensaje}"/>
+            <strong>Completada! </strong><c:out value="${param.mensaje}"/>
             <br>
         </div>
     </c:if>

@@ -31,15 +31,10 @@
     </div>
 </nav>
 <body style="background: #FFFBF5">
-<sql:query var="q" dataSource="jdbc/mysql">
-    SELECT nombre FROM departamentos WHERE id = ?
-    <sql:param value="${param.departamento}" />
-</sql:query>
 <div class="container" id="contai">
 
     <form class="row g-3" id="ingreso">
         <h1 class="text-center">${param.cabecera}</h1>
-
         <div class="col-md-6">
             <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
             <input type="text" id="disabledTextInput" class="form-control" placeholder="" value="${param.caso}" disabled>

@@ -116,6 +116,7 @@
 
 <c:if test="${param.operacion == 'acepta'}">
     <c:redirect url="formularioAcepta.jsp">
+        <c:param name="operacion" value="insertarinf"/>
         <c:param name="cabecera" value="Aceptación de Caso"/>
         <c:param name="titu_caso" value="Codigo del Caso"/>
         <c:param name="titu_departamento" value="Departamento"/>
@@ -131,6 +132,22 @@
         <c:param name="descripcion" value="${param.descripcion}"/>
         <c:param name="usuID" value="${param.idUSU}"/>
         <c:param name="departi" value="${param.departament}"/>
+    </c:redirect>
+</c:if>
+
+<c:if test="${param.operacion == 'asignar'}">
+    <sql:update var="insertar" dataSource="jdbc/mysql">
+        INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaEntrega, infoCaso)
+        VALUES ('10', ?, '8', '2023-04-29' , ?)
+        <%--<sql:param value="${param.id_Desarrollador}"/>--%>
+        <sql:param value="${param.ID_caso}"/>
+        <%--<sql:param value="${param.id_Probador}"/>--%>
+        <%--<sql:param value="${param.fechaActual}"/>--%>
+        <sql:param value="${param.descrip_caso}"/>
+    </sql:update>
+    <c:redirect url="index.jsp">
+        <c:param name="IDusu" value="${param.usu_ID}"/>
+        <c:param name="mensaje" value="Asignación hecha correctamente"/>
     </c:redirect>
 </c:if>
 

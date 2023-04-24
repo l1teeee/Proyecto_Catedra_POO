@@ -41,10 +41,8 @@
     FROM caso_desarrollo
     WHERE caso_desarrollo.id_Desarrollador = usuarios.Id
     );
-
 </sql:query>
 <sql:query var="emple" dataSource="jdbc/mysql">
-
     SELECT dj.id_Departamento, dj.id_Usuario, jdp.id_jefe, jdp.id_probador, u.Id, u.Nombre, u.Apellido, u.Telefono, u.Correo
     FROM departamento_jefe dj
     JOIN jefedepto_probador jdp ON dj.id_Usuario = jdp.id_jefe
@@ -61,50 +59,54 @@
 
         <div class="col-md-6">
             <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
-            <input type="text" id="disabledTextInput" class="form-control" placeholder="" value="${param.casoCod}" disabled>
+            <input type="text" id="disabledTextInput" name="id_Caso_Acep" class="form-control" placeholder="" value="${param.casoCod}" disabled>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_descrip}</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="${param.descripcion}" disabled></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1"  rows="3" placeholder="${param.descripcion}" disabled></textarea>
         </div>
         <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_recha}</label>
-            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Digite requerimientos adicionales para el desarrollador" required></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea2" name="infoCaso_Acep" rows="3" placeholder="Digite requerimientos adicionales para el desarrollador" required></textarea>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_desa}</label>
-            <select class="form-select" aria-label="Default select example" required>
+            <select class="form-select" aria-label="Default select example" name="id_Desarrollador" required>
                 <option selected>${param.select_desa}</option>
                 <c:forEach var="desarrollador" items="${desa.rows}">
-                    <option>${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
+                    <option value="${desarrollador.id}">${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
                 </c:forEach>
-
             </select>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_emple}</label>
-            <select class="form-select" aria-label="Default select example" required>
+            <select class="form-select" aria-label="Default select example" name="id_Probador" required>
                 <option selected>${param.select_emple}</option>
                 <c:forEach var="empleado" items="${emple.rows}">
-                    <option>${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
+                    <option value="${empleado.id}">${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
                 </c:forEach>
             </select>
         </div>
 
         <div class="form-group">
             <label for="fecha">${param.titu_date}</label>
-            <div class="input-group">
-                <input type="date" class="form-control" id="fecha"
-                       name="fecha"
-                       placeholder="Ingresa la fecha" value="2023-04-21"
-                       min="2023-04-21" max="2023-05-31" required/>
+            <div class="form-group">
+                <label for="fecha">Fecha (YYYY-MM-DD)</label>
+                <input type="text" class="form-control" id="fecha" name="fechaActual"
+                       placeholder="Ingresa la fecha en formato YYYY-MM-DD"
+                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
             </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div>
 
 
 
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a class="btn bg-success" href="controller.jsp?operacion=verificacion">Aceptar Caso</a>
+            <a class="btn bg-success" href="controller.jsp?operacion=asignar&amp;usu_ID=${param.usuID}&amp;ID_caso=${param.id_Caso_Acep}&amp;descrip_caso=${param.infoCaso_Acep}">Insertar</a>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>
         </div>
     </form>

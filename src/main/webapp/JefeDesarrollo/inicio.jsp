@@ -48,15 +48,13 @@
       </div>
     </div>
   </div>
-
-  <c:if test="${not empty param.mensaje}">
-    <div class="alert alert-success">
-      <strong>Correcto! </strong><c:out value="${param.mensaje}"/>
-      <br>
-    </div>
-  </c:if>
 </div>
-
+<c:if test="${not empty param.mensaje}">
+  <div class="alert alert-success">
+    <strong>Correcto! </strong><c:out value="${param.mensaje}"/>
+    <br>
+  </div>
+</c:if>
 </body>
 
 <footer class="bg-white" id="foot">
