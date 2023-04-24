@@ -32,7 +32,12 @@
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
 
-    <form class="row g-3" id="ingreso">
+    <form class="row g-3" id="ingreso" action="controller.jsp" method="POST">
+        <input type="hidden" name="id" value="${not empty param.id}">
+        <input type="hidden" value="${param.operacion}" name="operacion" id="operacion">
+        <input type="hidden" value="${param.casoCod}" name="dato"  id="dato">
+        <input type="hidden" value="${param.usuID}" name="usuid"  id="usuid">
+        <input type="hidden" value="${param.dateActu}" name="fechaActual"  id="fechaActual">
         <h1 class="text-center">${param.cabecera}</h1>
 
         <div class="mb-3">
@@ -45,10 +50,10 @@
         </div>
         <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_recha}</label>
-            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" placeholder="Digite su razón" ></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea2" value="${param.descrip}" name="razonRe" rows="3" placeholder="Digite su razón" ></textarea>
         </div>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a class="btn bg-danger" href="controller.jsp?operacion=verificacion">Rechazar el caso</a>
+            <input class="btn bg-danger" type="submit" value="Rechazar Caso">
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>
         </div>
     </form>

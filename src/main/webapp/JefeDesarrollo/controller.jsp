@@ -66,8 +66,6 @@
         <c:param name="titu_descrip" value="Descripción de sistema"/>
         <c:param name="titu_nombre" value="Titulo de Sistema"/>
         <c:param name="titu_departamento" value="Departamento"/>
-
-
         <%--Valores--%>
         <c:param name="caso" value="${param.id}"/>
         <c:param name="tipo" value="${param.tipo}"/>
@@ -93,12 +91,15 @@
 </c:if>
 
 
+
 <c:if test="${param.operacion == 'home'}">
     <c:redirect url="inicio.jsp">
     </c:redirect>
 </c:if>
 
 
+
+<%--Rechazar casos--%>
 <c:if test="${param.operacion == 'rechazo'}">
     <c:redirect url="formularioRechazo.jsp">
         <c:param name="cabecera" value="Rechazo de Caso"/>
@@ -110,10 +111,42 @@
         <c:param name="casoCod" value="${param.cod}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
         <c:param name="usuID" value="${param.idUSU}"/>
+        <c:param name="operacion" value="rechazoinf"/>
     </c:redirect>
 </c:if>
 
+<c:if test="${param.operacion == 'rechazoinf'}">
+    <sql:update var="rechazar" dataSource="jdbc/mysql">
+        INSERT INTO casos_rechazados(Codigo, Argumento)
+        VALUES (?, ?)
+        <sql:param value="${param.dato}"/>
+        <sql:param value="${param.razonRe}"/>
+    </sql:update>
+    <sql:update var="actualizar" dataSource="jdbc/mysql">
+        UPDATE casos SET Estado = 'Rechazado' WHERE Codigo = ?
+        <sql:param value="${param.dato}" />
+    </sql:update>
+    <c:redirect url="index.jsp">
+        <c:param name="IDusu" value="${param.usuid}"/>
+        <c:param name="recha" value="Se ha notificado que el caso ha sido rechazado"/>
+    </c:redirect>
+</c:if>
+<%--Rechazar casos--%>
 
+
+<%--Casos Rechazados--%>
+
+<c:if test="${param.operacion == 'casosRe'}">
+    <c:redirect url="casosRechazados.jsp">
+        <c:param name="id_Usu" value="${param.id}"/>
+    </c:redirect>
+</c:if>
+<%--Casos Rechazados--%>
+
+
+
+
+<%--Aceptar casos--%>
 <c:if test="${param.operacion == 'acepta'}">
     <c:redirect url="formularioAcepta.jsp">
         <c:param name="operacion" value="insertarinf"/>
@@ -158,7 +191,7 @@
     </c:redirect>
 </c:if>
 
-
+<%--Aceptar casos--%>
 
 <%--JEFE DESARROLLADOR--%>
 

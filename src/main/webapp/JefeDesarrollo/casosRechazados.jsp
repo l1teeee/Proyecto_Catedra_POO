@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: aleja
-  Date: 12/04/2023
-  Time: 11:53 p. m.
+  Date: 24/04/2023
+  Time: 12:32 p. m.
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,21 +22,13 @@
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="" value="${param.IDusu}" aria-label="Search" disabled>
+            <input class="form-control me-2" type="search" placeholder="" value="${param.id_Usu}" aria-label="Search" disabled>
         </form>
     </div>
 </nav>
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
     <h1 class="text-center">Casos pendientes</h1>
-    <sql:query var="q" dataSource="jdbc/mysql">
-        SELECT Codigo, Tipo, Descripcion, Nombre, Departamento
-        FROM casos
-        WHERE Estado = 'En espera de respuesta'
-        AND Departamento = (SELECT dj.id_Departamento
-        FROM departamento_jefe dj
-        WHERE dj.id_Usuario = ${param.IDusu});
-    </sql:query>
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -68,7 +60,7 @@
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success">Revisar Casos</button>
-            <a type="button" class="btn btn-danger" href="controller.jsp?operacion=casosRe&amp;id=${param.IDusu}">Casos Rechazados</a>
+            <button type="button" class="btn btn-danger" href="controller.jsp?operacion=casosRe">Casos Rechazados</button>
             <a type="button" class="btn btn-secondary" href="controller.jsp?operacion=home">Regresar a Menu</a>
         </div>
     </center>
