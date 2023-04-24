@@ -127,6 +127,7 @@
         <c:param name="titu_emple" value="Lista de Empleados del Departamento"/>
         <c:param name="select_emple" value="Empleados Available"/>
         <c:param name="titu_date" value="Fecha de Entrega"/>
+        <c:param name="dateActu" value="2023-04-23"/>
         <%--Valores--%>
         <c:param name="casoCod" value="${param.cod}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
@@ -138,18 +139,26 @@
 
 <c:if test="${param.operacion == 'insertarinf'}">
     <sql:update var="insertar" dataSource="jdbc/mysql">
-        INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaEntrega, infoCaso)
-        VALUES (?, '3' , ?, ? , ?)
+        INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaActual ,fechaEntrega, infoCaso,caso_porcentaje,estado_caso,detalle_caso)
+        VALUES (?, ? , ?, ? , ?,?,0,"","")
         <sql:param value="${param.id_Desarrollador}"/>
+        <sql:param value="${param.dato}"/>
         <sql:param value="${param.id_Probador}"/>
+        <sql:param value="${param.fechaActual}"/>
         <sql:param value="${param.fechaEntrega}"/>
         <sql:param value="${param.infoCaso_Acep}"/>
     </sql:update>
+    <sql:update var="actualizar" dataSource="jdbc/mysql">
+        UPDATE casos SET Estado = 'En Progreso' WHERE Codigo = ?
+        <sql:param value="${param.dato}" />
+    </sql:update>
     <c:redirect url="index.jsp">
-        <c:param name="IDusu" value="${param.usu_ID}"/>
+        <c:param name="IDusu" value="${param.usuid}"/>
         <c:param name="mensaje" value="Asignación hecha correctamente"/>
-    </c:redirect>--%>
+    </c:redirect>
 </c:if>
+
+
 
 <%--JEFE DESARROLLADOR--%>
 

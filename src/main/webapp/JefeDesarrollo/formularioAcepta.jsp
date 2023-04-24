@@ -57,10 +57,15 @@
     <form class="row g-3" id="ingreso" action="controller.jsp" method="POST">
         <input type="hidden" name="id" value="${not empty param.id}">
         <input type="hidden" value="${param.operacion}" name="operacion" id="operacion">
+        <input type="hidden" value="${param.casoCod}" name="dato"  id="dato">
+        <input type="hidden" value="${param.usuID}" name="usuid"  id="usuid">
+        <input type="hidden" value="${param.dateActu}" name="fechaActual"  id="fechaActual">
+
+
         <h1 class="text-center">${param.cabecera}</h1>
         <div class="col-md-6">
             <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
-            <input type="text" id="disabledTextInput" name="id_Caso_Acep" class="form-control" placeholder="" value="${param.casoCod}"  disabled>
+            <input type="text" id="disabledTextInput" name="id_Caso_Acep" class="form-control" placeholder="" value="${param.casoCod}"  disabled >
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_descrip}</label>
@@ -88,8 +93,12 @@
                 </c:forEach>
             </select>
         </div>
-        <div class="form-group">
-            <label for="fecha">Fecha (YYYY-MM-DD)</label>
+        <div class="col-md-6">
+            <label for="fecha">Fecha de Actual</label>
+            <input type="date" class="form-control" id="fechaActu" name="fechaActu" value="${param.dateActu}" disabled>
+        </div>
+        <div class="col-md-6">
+            <label for="fecha">Fecha de Entrega</label>
             <input type="date" class="form-control" id="fecha" name="fechaEntrega"
                    placeholder="Ingresa la fecha en formato YYYY-MM-DD"
                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
