@@ -135,7 +135,6 @@
 
 
 <%--Casos Rechazados--%>
-
 <c:if test="${param.operacion == 'casosRe'}">
     <c:redirect url="casosRechazados.jsp">
         <c:param name="id_Usu" value="${param.id}"/>

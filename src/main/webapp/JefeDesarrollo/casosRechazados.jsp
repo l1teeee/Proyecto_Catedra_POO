@@ -26,9 +26,21 @@
         </form>
     </div>
 </nav>
+<sql:query var="casosRechazados" dataSource="jdbc/mysql">
+    SELECT c.Codigo, c.Tipo, c.Descripcion, c.Nombre, cr.Argumento
+    FROM casos c
+    LEFT JOIN casos_rechazados cr ON c.Codigo = cr.Codigo
+    WHERE c.Departamento = (
+    SELECT id_Departamento
+    FROM departamento_jefe
+    WHERE id_Usuario = ${param.id_Usu}
+    )
+    AND c.Estado = 'Rechazado'
+</sql:query>
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
     <h1 class="text-center">Casos pendientes</h1>
+    <input type="hidden" value="${param.usuID}" name="usuID"  id="usuid">
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -37,21 +49,17 @@
             <th>Tipo</th>
             <th>Descripcion</th>
             <th>Nombre de Proyecto</th>
-            <th>Departamento</th>
-            <th>Operación</th>
+            <th>Argumento del rechazo</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="casos" items="${q.rows}">
+        <c:forEach var="rechazados" items="${casosRechazados.rows}">
             <tr>
-                <td>${casos.Codigo}</td>
-                <td>${casos.Tipo}</td>
-                <td>${casos.Descripcion}</td>
-                <td>${casos.Nombre}</td>
-                <td>${casos.Departamento}</td>
-                <td>
-                    <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}&amp;idUSU=${param.IDusu}">Verificar</a>
-                </td>
+                <td>${rechazados.Codigo}</td>
+                <td>${rechazados.Tipo}</td>
+                <td>${rechazados.Descripcion}</td>
+                <td>${rechazados.Nombre}</td>
+                <td>${rechazados.Argumento}</td>
             </tr>
         </c:forEach>
         </tbody>
@@ -59,8 +67,6 @@
     <center>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success">Revisar Casos</button>
-            <button type="button" class="btn btn-danger" href="controller.jsp?operacion=casosRe">Casos Rechazados</button>
             <a type="button" class="btn btn-secondary" href="controller.jsp?operacion=home">Regresar a Menu</a>
         </div>
     </center>
