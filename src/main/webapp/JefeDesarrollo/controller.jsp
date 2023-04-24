@@ -132,23 +132,23 @@
         <c:param name="descripcion" value="${param.descripcion}"/>
         <c:param name="usuID" value="${param.idUSU}"/>
         <c:param name="departi" value="${param.departament}"/>
+        <c:param name="operacion" value="insertarinf"/>
     </c:redirect>
 </c:if>
 
-<c:if test="${param.operacion == 'asignar'}">
+<c:if test="${param.operacion == 'insertarinf'}">
     <sql:update var="insertar" dataSource="jdbc/mysql">
         INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaEntrega, infoCaso)
-        VALUES ('10', ?, '8', '2023-04-29' , ?)
-        <%--<sql:param value="${param.id_Desarrollador}"/>--%>
-        <sql:param value="${param.ID_caso}"/>
-        <%--<sql:param value="${param.id_Probador}"/>--%>
-        <%--<sql:param value="${param.fechaActual}"/>--%>
-        <sql:param value="${param.descrip_caso}"/>
+        VALUES (?, '3' , ?, ? , ?)
+        <sql:param value="${param.id_Desarrollador}"/>
+        <sql:param value="${param.id_Probador}"/>
+        <sql:param value="${param.fechaEntrega}"/>
+        <sql:param value="${param.infoCaso_Acep}"/>
     </sql:update>
     <c:redirect url="index.jsp">
         <c:param name="IDusu" value="${param.usu_ID}"/>
         <c:param name="mensaje" value="Asignación hecha correctamente"/>
-    </c:redirect>
+    </c:redirect>--%>
 </c:if>
 
 <%--JEFE DESARROLLADOR--%>

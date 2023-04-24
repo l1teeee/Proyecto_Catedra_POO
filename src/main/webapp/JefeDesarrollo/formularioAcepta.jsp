@@ -54,12 +54,13 @@
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
 
-    <form class="row g-3" id="ingreso">
+    <form class="row g-3" id="ingreso" action="controller.jsp" method="POST">
+        <input type="hidden" name="id" value="${not empty param.id}">
+        <input type="hidden" value="${param.operacion}" name="operacion" id="operacion">
         <h1 class="text-center">${param.cabecera}</h1>
-
         <div class="col-md-6">
             <label for="disabledTextInput" class="form-label">${param.titu_caso}</label>
-            <input type="text" id="disabledTextInput" name="id_Caso_Acep" class="form-control" placeholder="" value="${param.casoCod}" disabled>
+            <input type="text" id="disabledTextInput" name="id_Caso_Acep" class="form-control" placeholder="" value="${param.casoCod}"  disabled>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_descrip}</label>
@@ -67,7 +68,7 @@
         </div>
         <div class="col-12">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_recha}</label>
-            <textarea class="form-control" id="exampleFormControlTextarea2" name="infoCaso_Acep" rows="3" placeholder="Digite requerimientos adicionales para el desarrollador" required></textarea>
+            <input class="form-control" id="exampleFormControlTextarea2" name="infoCaso_Acep" rows="3" value="${param.descrip}" placeholder="Digite requerimientos adicionales para el desarrollador" required>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_desa}</label>
@@ -87,16 +88,14 @@
                 </c:forEach>
             </select>
         </div>
-
         <div class="form-group">
-            <label for="fecha">${param.titu_date}</label>
-            <div class="form-group">
-                <label for="fecha">Fecha (YYYY-MM-DD)</label>
-                <input type="text" class="form-control" id="fecha" name="fechaActual"
-                       placeholder="Ingresa la fecha en formato YYYY-MM-DD"
-                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
-            </div>
+            <label for="fecha">Fecha (YYYY-MM-DD)</label>
+            <input type="date" class="form-control" id="fecha" name="fechaEntrega"
+                   placeholder="Ingresa la fecha en formato YYYY-MM-DD"
+                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
         </div>
+
+
 
         <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile02">
@@ -106,7 +105,7 @@
 
 
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a class="btn bg-success" href="controller.jsp?operacion=asignar&amp;usu_ID=${param.usuID}&amp;ID_caso=${param.id_Caso_Acep}&amp;descrip_caso=${param.infoCaso_Acep}">Insertar</a>
+            <input type="submit" class="btn btn-success col-md-6 " value="Enviar"/>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>
         </div>
     </form>

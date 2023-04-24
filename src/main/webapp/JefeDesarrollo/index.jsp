@@ -29,18 +29,13 @@
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
     <h1 class="text-center">Casos pendientes</h1>
-    <%-- <sql:query var="q" dataSource="jdbc/mysql">
-        SELECT casos.Codigo, casos.Tipo, casos.Descripcion, casos.Nombre, departamentos.Nombre as DepartamentoNombre, casos.Departamento
-        FROM casos
-        JOIN departamentos ON casos.Departamento = departamentos.id
-    </sql:query>--%>
     <sql:query var="q" dataSource="jdbc/mysql">
         SELECT Codigo, Tipo, Descripcion, Nombre, Departamento
         FROM casos
         WHERE Estado = 'En espera de respuesta'
         AND Departamento = (SELECT dj.id_Departamento
         FROM departamento_jefe dj
-        WHERE dj.id_Usuario = ${param.IDusu})
+        WHERE dj.id_Usuario = ${param.IDusu});
     </sql:query>
 
     <table class="table table-striped table-bordered table-hover">
