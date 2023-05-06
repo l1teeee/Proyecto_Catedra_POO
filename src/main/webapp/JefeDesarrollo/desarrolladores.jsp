@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: aleja
-  Date: 12/04/2023
-  Time: 11:53 p. m.
+  Date: 24/04/2023
+  Time: 12:32 p. m.
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/estilo.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    <title>Principal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    <title>Desarrolladores</title>
 </head>
 
 <nav class="navbar bg-dark"  data-bs-theme="dark">
@@ -26,56 +26,44 @@
         </form>
     </div>
 </nav>
+<sql:query var="casosRechazados" dataSource="jdbc/mysql">
+    SELECT Nombre, Apellido, Telefono, Correo
+    FROM usuarios
+    WHERE id IN (
+    SELECT id_desarrollador
+    FROM jefedesarrollo_desarrollador
+    WHERE id_jefe = ${param.IDusu}
+    )
+</sql:query>
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
-    <h1 class="text-center">Casos pendientes</h1>
-    <sql:query var="q" dataSource="jdbc/mysql">
-        SELECT Codigo, Tipo, Descripcion, Nombre, Departamento
-        FROM casos
-        WHERE Estado = 'En espera de respuesta'
-        AND Departamento = (SELECT dj.id_Departamento
-        FROM departamento_jefe dj
-        WHERE dj.id_Usuario = ${param.IDusu});
-    </sql:query>
+    <h1 class="text-center">Desarrolladores Asignados Disponibles</h1>
+    <input type="hidden" value="${param.usuID}" name="IDusu" id="IDusu">
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Tipo</th>
-            <th>Descripcion</th>
-            <th>Nombre de Proyecto</th>
-            <th>Departamento</th>
-            <th>Operación</th>
+        <tr >
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Telefono</th>
+            <th>Correo</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="casos" items="${q.rows}">
-            <tr>
-                <td>${casos.Codigo}</td>
-                <td>${casos.Tipo}</td>
-                <td>${casos.Descripcion}</td>
-                <td>${casos.Nombre}</td>
-                <td>${casos.Departamento}</td>
-                <td>
-                    <a class="btn bg-primary" href="controller.jsp?operacion=verificacion&amp;id=${casos.Codigo}&amp;tipo=${casos.Tipo}&amp;descripcion=${casos.Descripcion}&amp;nombre=${casos.Nombre}&amp;departamento=${casos.Departamento}&amp;idUSU=${param.IDusu}">Verificar</a>
-                </td>
+        <c:forEach var="rechazados" items="${casosRechazados.rows}">
+            <tr class="table-success">
+                <td>${rechazados.Nombre}</td>
+                <td>${rechazados.Apellido}</td>
+                <td>${rechazados.Telefono}</td>
+                <td>${rechazados.Correo}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-
-    <c:if test="${empty q.rows}">
-        <div class="alert alert-danger">
-            No se ha asignado ningun caso.
-        </div>
-    </c:if>
     <center>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a type="button" class="btn btn-success" href="controller.jsp?operacion=revi&amp;id=${param.IDusu}">Revisar Casos</a>
-            <a type="button" class="btn btn-danger" href="controller.jsp?operacion=casosRe&amp;id=${param.IDusu}">Casos Rechazados</a>
-            <a type="button" class="btn btn-secondary" href="controller.jsp?operacion=home">Regresar a Menu</a>
+            <a class="btn btn-primary" href="controller.jsp?operacion=home">Regresar</a>
         </div>
     </center>
 

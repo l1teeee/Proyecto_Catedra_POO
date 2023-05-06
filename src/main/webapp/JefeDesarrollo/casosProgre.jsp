@@ -15,66 +15,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/estilo.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    <title>Rechazados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    <title>Desarrolladores</title>
 </head>
 
 <nav class="navbar bg-dark"  data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand"><img src="../util/logo.png" href="" id="logo"></a>
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="" value="${param.id_Usu}" aria-label="Search" disabled>
+            <input class="form-control me-2" type="search" placeholder="" value="${param.IDusu}" aria-label="Search" disabled>
         </form>
     </div>
 </nav>
 <sql:query var="casosRechazados" dataSource="jdbc/mysql">
-    SELECT c.Codigo, c.Tipo, c.Descripcion, c.Nombre, cr.Argumento
-    FROM casos c
-    LEFT JOIN casos_rechazados cr ON c.Codigo = cr.Codigo
-    WHERE c.Departamento = (
-    SELECT id_Departamento
-    FROM departamento_jefe
-    WHERE id_Usuario = ${param.id_Usu}
-    )
-    AND c.Estado = 'Rechazado'
+    SELECT id_Desarrollador, id_Caso, id_Probador, infoCaso, caso_porcentaje
+    FROM caso_desarrollo
+    WHERE id_Desarrollador IN (
+    SELECT id_desarrollador
+    FROM jefedesarrollo_desarrollador
+    WHERE id_jefe = ${param.IDusu}
+    );
 </sql:query>
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
-    <h1 class="text-center">Casos Rechazados</h1>
+    <h1 class="text-center">Desarrolladores Asignados Disponibles</h1>
     <input type="hidden" value="${param.usuID}" name="IDusu" id="IDusu">
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Tipo</th>
-            <th>Descripcion</th>
-            <th>Nombre de Proyecto</th>
-            <th>Argumento del rechazo</th>
+        <tr >
+            <th>Desarrollador</th>
+            <th>Caso</th>
+            <th>Probador</th>
+            <th>Información del Caso</th>
+            <th>Porcentaje del caso</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="rechazados" items="${casosRechazados.rows}">
-            <tr class="table-danger">
-                <td>${rechazados.Codigo}</td>
-                <td>${rechazados.Tipo}</td>
-                <td>${rechazados.Descripcion}</td>
-                <td>${rechazados.Nombre}</td>
-                <td>${rechazados.Argumento}</td>
+            <tr class="table-info">
+                <td>${rechazados.id_Desarrollador}</td>
+                <td>${rechazados.id_Caso}</td>
+                <td>${rechazados.id_Probador}</td>
+                <td>${rechazados.infoCaso}</td>
+                <td>${rechazados.caso_porcentaje}%</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <c:if test="${empty casosRechazados.rows}">
         <div class="alert alert-danger">
-            No hay ningun caso en rechazado.
+            No hay ningun caso en progreso.
         </div>
     </c:if>
     <center>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.id_Usu}">Regresar</a>
+            <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.IDusu}">Regresar</a>
         </div>
     </center>
+
 </div>
 
 </body>

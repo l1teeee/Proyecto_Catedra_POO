@@ -213,49 +213,28 @@
 </c:if>
 
 
-
-
 <%--Aceptar casos--%>
+
+
+
+<%--Revisar desarrolladores casos--%>
+<c:if test="${param.operacion == 'desarro'}">
+    <c:redirect url="desarrolladores.jsp">
+        <c:param name="IDusu" value="${param.usuID}"/>
+    </c:redirect>
+</c:if>
+<%--Revisar desarrolladores casos--%>
+
+
+
+<c:if test="${param.operacion == 'revi'}">
+    <c:redirect url="casosProgre.jsp">
+        <c:param name="IDusu" value="${param.id}"/>
+    </c:redirect>
+</c:if>
 
 <%--JEFE DESARROLLADOR--%>
 
-
-<%--
-<%
-    if(request.getParameter("operacion").equals("modificar")) {
-        String id_persona = request.getParameter("id_persona");
-        String nombre_persona = request.getParameter("nombre");
-        String edad_persona = request.getParameter("edad");
-        String sexo_persona = request.getParameter("sexo");
-        String id_ocupacion = request.getParameter("idocupacion");
-        String telefono_persona = request.getParameter("telefono");
-        String fecha_nac = request.getParameter("fecha_nac");
-
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/personabddg7", "root", "");
-            String sql = "UPDATE persona SET nombre_persona=?, edad_persona=?, sexo_persona=?, id_ocupacion=?, telefono_persona=?, fecha_nac=? WHERE id_persona=?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, nombre_persona);
-            statement.setString(2, edad_persona);
-            statement.setString(3, sexo_persona);
-            statement.setString(4, id_ocupacion);
-            statement.setString(5, telefono_persona);
-            statement.setString(6, fecha_nac);
-            statement.setString(7, id_persona);
-
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated > 0) {
-                out.println("Los datos se actualizaron correctamente.");
-                response.sendRedirect("principal.jsp");
-
-            } else {
-                out.println("No se pudo actualizar los datos.");
-            }
-        } catch (SQLException ex) {
-            out.println("Error al conectar con la base de datos: " + ex.getMessage());
-        }
-    }
-%>--%>
 
 
 </body>

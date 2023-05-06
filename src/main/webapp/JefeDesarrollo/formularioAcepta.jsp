@@ -104,10 +104,26 @@
                    min="${param.dateEntre}"
                    required>
         </div>
-        <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02" disabled>
-            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+
+
+        <div class="col-12">
+            <label for="fecha">Documento del Departamento Solicitante</label>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02" disabled>
+                <label class="input-group-text" for="inputGroupFile02">Subir Archivo</label>
+            </div>
         </div>
+
+        <div class="col-12">
+            <label for="fecha">Requerimientos del Jefe Desarrollo</label>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile03" name="documento">
+                <label class="input-group-text" for="inputGroupFile02">Subir Archivo</label>
+            </div>
+        </div>
+
+
+
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <input type="submit" class="btn btn-success col-md-6 " value="Enviar"/>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>

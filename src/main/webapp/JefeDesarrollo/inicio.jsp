@@ -44,7 +44,7 @@
       <h5 class="card-title">Seleccione una categoria</h5>
       <div class="btn-group" role="group" aria-label="Basic example">
         <a class="btn btn-primary" href="controller.jsp?operacion=inicio&amp;usuID=5">Bandeja de Entrada</a>
-        <button type="button" class="btn btn-success">Desarrolladores Asignados</button>
+        <a class="btn btn-success" href="controller.jsp?operacion=desarro&amp;usuID=5">Desarrolladores Asignados</a>
         <button type="button" class="btn btn-secondary">Cerrar Sesión</button>
       </div>
     </div>
