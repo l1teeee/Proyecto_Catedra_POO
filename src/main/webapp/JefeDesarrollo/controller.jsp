@@ -2,6 +2,14 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.concurrent.TimeUnit" %>
+
+
 <%--
   Created by IntelliJ IDEA.
   User: aleja
@@ -146,6 +154,17 @@
 
 
 <%--Aceptar casos--%>
+
+<%
+    Date fechaActual = new Date();
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+    String fechaFormateada = formatoFecha.format(fechaActual);
+    Calendar c = Calendar.getInstance();
+    c.setTime(fechaActual);
+    c.add(Calendar.DATE, 1); // Agrega un día
+    SimpleDateFormat formatoFecha2 = new SimpleDateFormat("yyyy-MM-dd");
+    String fechaEntre = formatoFecha2.format(c.getTime()); // Obtén la fecha con un día más
+%>
 <c:if test="${param.operacion == 'acepta'}">
     <c:redirect url="formularioAcepta.jsp">
         <c:param name="operacion" value="insertarinf"/>
@@ -159,7 +178,9 @@
         <c:param name="titu_emple" value="Lista de Empleados del Departamento"/>
         <c:param name="select_emple" value="Empleados Available"/>
         <c:param name="titu_date" value="Fecha de Entrega"/>
-        <c:param name="dateActu" value="2023-04-23"/>
+        <c:param name="dateActu" value="<%= fechaFormateada %>"/>
+        <c:param name="dateEntre" value="<%= fechaEntre %>"/>
+
         <%--Valores--%>
         <c:param name="casoCod" value="${param.cod}"/>
         <c:param name="descripcion" value="${param.descripcion}"/>
@@ -169,10 +190,11 @@
     </c:redirect>
 </c:if>
 
+
 <c:if test="${param.operacion == 'insertarinf'}">
     <sql:update var="insertar" dataSource="jdbc/mysql">
-        INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaActual ,fechaEntrega, infoCaso,caso_porcentaje,estado_caso,detalle_caso)
-        VALUES (?, ? , ?, ? , ?,?,0,"","")
+        INSERT INTO caso_desarrollo(id_Desarrollador, id_Caso, id_Probador, fechaActual, fechaEntrega, infoCaso, caso_porcentaje, estado_caso, detalle_caso)
+        VALUES (?, ?, ?, ?, ?, ?, 0, '', '')
         <sql:param value="${param.id_Desarrollador}"/>
         <sql:param value="${param.dato}"/>
         <sql:param value="${param.id_Probador}"/>
@@ -186,9 +208,12 @@
     </sql:update>
     <c:redirect url="index.jsp">
         <c:param name="IDusu" value="${param.usuid}"/>
-        <c:param name="mensaje" value="Asignación hecha correctamente"/>
+        <c:param name="mensaje" value="Asignación hecha correctamente."/>
     </c:redirect>
 </c:if>
+
+
+
 
 <%--Aceptar casos--%>
 

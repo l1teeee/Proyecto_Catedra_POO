@@ -78,18 +78,18 @@
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_desa}</label>
             <select class="form-select" aria-label="Default select example" name="id_Desarrollador" required>
-                <option selected>${param.select_desa}</option>
+                <option selected required>${param.select_desa}</option>
                 <c:forEach var="desarrollador" items="${desa.rows}">
-                    <option value="${desarrollador.id}">${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
+                    <option value="${desarrollador.id}" required>${desarrollador.Id} - ${desarrollador.Nombre} ${desarrollador.Apellido}</option>
                 </c:forEach>
             </select>
         </div>
         <div class="col-md-6">
             <label for="exampleFormControlTextarea1" class="form-label">${param.titu_emple}</label>
             <select class="form-select" aria-label="Default select example" name="id_Probador" required>
-                <option selected>${param.select_emple}</option>
+                <option selected required>${param.select_emple}</option>
                 <c:forEach var="empleado" items="${emple.rows}">
-                    <option value="${empleado.id}">${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
+                    <option value="${empleado.id}" required>${empleado.Id} - ${empleado.Nombre} ${empleado.Apellido}</option>
                 </c:forEach>
             </select>
         </div>
@@ -100,19 +100,14 @@
         <div class="col-md-6">
             <label for="fecha">Fecha de Entrega</label>
             <input type="date" class="form-control" id="fecha" name="fechaEntrega"
-                   placeholder="Ingresa la fecha en formato YYYY-MM-DD"
-                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+                   placeholder="Ingresa la fecha de entrega"
+                   min="${param.dateEntre}"
+                   required>
         </div>
-
-
-
         <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02">
+            <input type="file" class="form-control" id="inputGroupFile02" disabled>
             <label class="input-group-text" for="inputGroupFile02">Upload</label>
         </div>
-
-
-
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <input type="submit" class="btn btn-success col-md-6 " value="Enviar"/>
             <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.usuID}">Regresar</a>

@@ -40,7 +40,7 @@
 <body style="background: #FFFBF5">
 <div class="container" id="contai">
     <h1 class="text-center">Casos pendientes</h1>
-    <input type="hidden" value="${param.usuID}" name="usuID"  id="usuid">
+    <input type="hidden" value="${param.usuID}" name="IDusu" id="IDusu">
 
     <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -67,7 +67,7 @@
     <center>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-            <a type="button" class="btn btn-secondary" href="controller.jsp?operacion=home">Regresar a Menu</a>
+            <a class="btn btn-primary" href="controller.jsp?operacion=regresar&amp;usuID=${param.id_Usu}">Regresar</a>
         </div>
     </center>
 
